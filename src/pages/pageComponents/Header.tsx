@@ -1,11 +1,13 @@
 import React from 'react';
 import Navbar from './Navbar';
+import './pageComponents.css';
+import '../layout.css';
 
 const Header = () => {
 
 	return (
-		<header>
-            <h1>Transaction app</h1>
+		<header className='background-color padding-20'>
+            <h1>The finances app</h1>
             <Navbar/>
         </header>
 	);
