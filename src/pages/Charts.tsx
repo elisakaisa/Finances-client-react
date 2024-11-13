@@ -5,7 +5,7 @@ const Charts = () => {
         <>
             Charts
         </>
-    )
-}
+    );
+};
 
 export default Charts;

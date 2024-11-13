@@ -5,7 +5,7 @@ const Repartition = () => {
         <>
             Repartition
         </>
-    )
-}
+    );
+};
 
 export default Repartition;

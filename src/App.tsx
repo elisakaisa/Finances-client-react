@@ -2,11 +2,11 @@ import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './App.css';
 
-import Transactions from './pages/Transactions'
-import Header from './pages/pageComponents/Header'
-import Charts from './pages/Charts'
-import Repartition from './pages/Repartition'
-import Summary from './pages/Summary'
+import Transactions from './pages/Transactions';
+import Header from './pages/pageComponents/Header';
+import Charts from './pages/Charts';
+import Repartition from './pages/Repartition';
+import Summary from './pages/Summary';
 
 function App() {
   return (
@@ -20,6 +20,6 @@ function App() {
 			</Routes>
 		</BrowserRouter>
   );
-}
+};
 
 export default App;

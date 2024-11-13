@@ -5,7 +5,7 @@ const Summary = () => {
         <>
             Summary
         </>
-    )
-}
+    );
+};
 
 export default Summary;
