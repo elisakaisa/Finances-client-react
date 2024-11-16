@@ -25,7 +25,7 @@ const TransactionGrid = () => {
         {
             'id': 'ff1cd517-c123-4e29-917d-01aa78243e54',
             'description': 'Transaction 3',
-            'date': '2024-10-01',
+            'date': new Date(2024, 10, 1),
             'fromOrTo': 'Sender',
             'location': 'Location 3',
             'excludeFromSummary': false,
@@ -43,7 +43,7 @@ const TransactionGrid = () => {
           {
             'id': '5ff99a52-4418-45da-bc56-577b5a18a107',
             'description': 'Transaction 2',
-            'date': '2024-10-01',
+            'date': new Date(2024, 10, 1),
             'fromOrTo': 'Receiver',
             'location': 'Location 2',
             'excludeFromSummary': false,
@@ -61,7 +61,7 @@ const TransactionGrid = () => {
           {
             'id': '3ee0d647-f0e9-4e99-a7d9-85e7fb98c954',
             'description': 'Transaction 3',
-            'date': '2024-10-01',
+            'date': new Date(2024, 10, 1),
             'fromOrTo': 'Sender',
             'location': 'Location 3',
             'excludeFromSummary': false,
@@ -77,6 +77,14 @@ const TransactionGrid = () => {
             'userId': '00000000-0000-0000-0000-000000000001'
           }
     ];
+    
+    // TODO: probs need to have state for types, category, subcategory to limit choices when editing
+    const transactionTypes: string[] = ['Expenses', 'Income', 'Savings'];
+    const categoryNames: string[] = ['Utilities', 'Income'];
+    const subcategoryNames: string[] = ['Amortization', 'Interest'];
+    const splitType: string[] = ['Individual', 'Even', 'Income based', 'Custom'];
+    const modeOfPayment: string[] = ['Debit', 'Transfer', 'Autogiro', 'Swish', 'Other'];
+
 
     // State to manage the rows (e.g., after deleting or editing)
     const [rowData, setRowData] = useState(testData);
@@ -133,20 +141,77 @@ const TransactionGrid = () => {
     }));
       
     const columns: GridColDef[] = [
-        { field: 'description', headerName: 'Description', width: 150 },
-        { field: 'date', headerName: 'Date', minWidth: 50, flex: 0 },
-        { field: 'fromOrTo', headerName: 'From/To', minWidth: 50, flex: 0 },
-        { field: 'location', headerName: 'Location', width: 150 },
-        { field: 'transactionType', headerName: 'Type', minWidth: 50, flex: 0 },
-        { field: 'categoryName', headerName: 'Category', minWidth: 50, flex: 0 },
-        { field: 'subcategoryName', headerName: 'Subcategory', minWidth: 50, flex: 0 },
-        { field: 'splitType', headerName: 'Split type', minWidth: 110, flex: 0 },
-        { field: 'userShare', headerName: 'Share', minWidth: 20, flex: 0 },
-        { field: 'amount', headerName: 'Amount', minWidth: 50, flex: 0},
-        { field: 'modeOfPayment', headerName: 'Mode of Payment', minWidth: 50, flex: 0 },
-        { field: 'financialMonth', headerName: 'Month', minWidth: 50, maxWidth: 70, flex: 0 },
-        { field: 'excludeFromSummary', headerName: 'Exclude', minWidth: 40, maxWidth: 70, flex: 0 },
-        { field: 'toVerify', headerName: 'Verify', minWidth: 40, maxWidth: 70, flex: 0 },
+        { 
+          field: 'description', headerName: 'Description', 
+          width: 150, 
+          editable: true 
+        },
+        { 
+          field: 'date', headerName: 'Date', 
+          minWidth: 50, flex: 0, 
+          editable: true, type: 'date' 
+        },
+        { 
+          field: 'fromOrTo', headerName: 'From/To', 
+          minWidth: 50, flex: 0, 
+          editable: true 
+        },
+        { 
+          field: 'location', 
+          headerName: 'Location', 
+          width: 150, 
+          editable: true 
+        },
+        { 
+          field: 'transactionType', headerName: 'Type', 
+          minWidth: 50, flex: 0, 
+          editable: true, type: 'singleSelect', valueOptions: transactionTypes
+        },
+        { 
+          field: 'categoryName', headerName: 'Category', 
+          minWidth: 50, flex: 0, 
+          editable: true, type: 'singleSelect', valueOptions: categoryNames 
+        },
+        { 
+          field: 'subcategoryName', headerName: 'Subcategory', 
+          minWidth: 50, flex: 0, 
+          editable: true, type: 'singleSelect', valueOptions: subcategoryNames
+        },
+        { 
+          field: 'splitType', headerName: 'Split type', 
+          minWidth: 110, flex: 0, 
+          editable: true , type: 'singleSelect', valueOptions: splitType
+        },
+        { 
+          field: 'userShare', headerName: 'Share', 
+          minWidth: 20, flex: 0, 
+          editable: true 
+        },
+        { 
+          field: 'amount', headerName: 'Amount', 
+          minWidth: 50, flex: 0, 
+          editable: true, type: 'number' 
+        },
+        { 
+          field: 'modeOfPayment', headerName: 'Mode of Payment', 
+          minWidth: 50, flex: 0, 
+          editable: true, type: 'singleSelect', valueOptions: modeOfPayment
+        },
+        { 
+          field: 'financialMonth', headerName: 'Month', 
+          minWidth: 50, maxWidth: 70, flex: 0, 
+          editable: true 
+        },
+        { 
+          field: 'excludeFromSummary', headerName: 'Exclude', 
+          minWidth: 40, maxWidth: 70, flex: 0, 
+          editable: true 
+        },
+        { 
+          field: 'toVerify', headerName: 'Verify', 
+          minWidth: 40, maxWidth: 70, flex: 0, 
+          editable: true 
+        },
     ];
 
     const updatedColumns = [...columns, actionColumn];
@@ -155,7 +220,8 @@ const TransactionGrid = () => {
         <ThemeProvider theme={darkTheme}>
             <DataGrid 
                 rows={rows} 
-                columns={updatedColumns} />
+                columns={updatedColumns}
+                rowHeight={30} />
         </ThemeProvider>
     );
 };

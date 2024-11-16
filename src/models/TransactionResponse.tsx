@@ -1,7 +1,7 @@
 export interface TransactionResponse {
     id: string,
     description: string,
-    date: string, //TODO: is is date ot other type?
+    date: Date,
     fromOrTo: string,
     location: string,
     excludeFromSummary: boolean,
