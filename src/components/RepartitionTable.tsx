@@ -5,458 +5,58 @@ import TableCell from '@mui/material/TableCell';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { RepartitionResponse } from '../models/RepartitionResponse';
+import { RepartitionTableProps } from '../models/Props';
 
 
-const RepartitionTable = () => {
+const RepartitionTable = ({repartition}: RepartitionTableProps) => {
 
-    const theme = createTheme({
-        components: {
-          MuiTableCell: {
-            styleOverrides: {
-              root: {
-                color: '#fff', // Set text color
-              },
-            },
+  const theme = createTheme({
+    components: {
+      MuiTableCell: {
+        styleOverrides: {
+          root: {
+            color: '#fff', // Set text color
           },
         },
-      });
+      },
+    },
+  });
 
-    const testData: RepartitionResponse[] = [
-        {
-          'householdId': '10000000-0000-0000-0000-000000000000',
-          'monthYear': '202401',
-          'userName': {
-            '00000000-0000-0000-0000-000000000001': 'User1',
-            '00000000-0000-0000-0000-000000000002': 'User2'
-          },
-          'incomeAfterTax': {
-            '00000000-0000-0000-0000-000000000001': 0,
-            '00000000-0000-0000-0000-000000000002': 0
-          },
-          'userSharesOfHouseholdIncome': {
-            '00000000-0000-0000-0000-000000000001': 0.5,
-            '00000000-0000-0000-0000-000000000002': 0.5
-          },
-          'totalCommonExpenses': 0,
-          'totalCommonExpensesPaidByUser': {
-            '00000000-0000-0000-0000-000000000001': 0,
-            '00000000-0000-0000-0000-000000000002': 0
-          },
-          'userShouldPay': {
-            '00000000-0000-0000-0000-000000000001': 0,
-            '00000000-0000-0000-0000-000000000002': 0
-          },
-          'targetUserShare': {
-            '00000000-0000-0000-0000-000000000001': 0,
-            '00000000-0000-0000-0000-000000000002': 0
-          },
-          'actualUserShare': {
-            '00000000-0000-0000-0000-000000000001': 0,
-            '00000000-0000-0000-0000-000000000002': 0
-          }
-        },
-        {
-          'householdId': '10000000-0000-0000-0000-000000000000',
-          'monthYear': '202402',
-          'userName': {
-            '00000000-0000-0000-0000-000000000001': 'User1',
-            '00000000-0000-0000-0000-000000000002': 'User2'
-          },
-          'incomeAfterTax': {
-            '00000000-0000-0000-0000-000000000001': 0,
-            '00000000-0000-0000-0000-000000000002': 0
-          },
-          'userSharesOfHouseholdIncome': {
-            '00000000-0000-0000-0000-000000000001': 0.5,
-            '00000000-0000-0000-0000-000000000002': 0.5
-          },
-          'totalCommonExpenses': 0,
-          'totalCommonExpensesPaidByUser': {
-            '00000000-0000-0000-0000-000000000001': 0,
-            '00000000-0000-0000-0000-000000000002': 0
-          },
-          'userShouldPay': {
-            '00000000-0000-0000-0000-000000000001': 0,
-            '00000000-0000-0000-0000-000000000002': 0
-          },
-          'targetUserShare': {
-            '00000000-0000-0000-0000-000000000001': 0,
-            '00000000-0000-0000-0000-000000000002': 0
-          },
-          'actualUserShare': {
-            '00000000-0000-0000-0000-000000000001': 0,
-            '00000000-0000-0000-0000-000000000002': 0
-          }
-        },
-        {
-          'householdId': '10000000-0000-0000-0000-000000000000',
-          'monthYear': '202403',
-          'userName': {
-            '00000000-0000-0000-0000-000000000001': 'User1',
-            '00000000-0000-0000-0000-000000000002': 'User2'
-          },
-          'incomeAfterTax': {
-            '00000000-0000-0000-0000-000000000001': 0,
-            '00000000-0000-0000-0000-000000000002': 0
-          },
-          'userSharesOfHouseholdIncome': {
-            '00000000-0000-0000-0000-000000000001': 0.5,
-            '00000000-0000-0000-0000-000000000002': 0.5
-          },
-          'totalCommonExpenses': 0,
-          'totalCommonExpensesPaidByUser': {
-            '00000000-0000-0000-0000-000000000001': 0,
-            '00000000-0000-0000-0000-000000000002': 0
-          },
-          'userShouldPay': {
-            '00000000-0000-0000-0000-000000000001': 0,
-            '00000000-0000-0000-0000-000000000002': 0
-          },
-          'targetUserShare': {
-            '00000000-0000-0000-0000-000000000001': 0,
-            '00000000-0000-0000-0000-000000000002': 0
-          },
-          'actualUserShare': {
-            '00000000-0000-0000-0000-000000000001': 0,
-            '00000000-0000-0000-0000-000000000002': 0
-          }
-        },
-        {
-          'householdId': '10000000-0000-0000-0000-000000000000',
-          'monthYear': '202404',
-          'userName': {
-            '00000000-0000-0000-0000-000000000001': 'User1',
-            '00000000-0000-0000-0000-000000000002': 'User2'
-          },
-          'incomeAfterTax': {
-            '00000000-0000-0000-0000-000000000001': 0,
-            '00000000-0000-0000-0000-000000000002': 0
-          },
-          'userSharesOfHouseholdIncome': {
-            '00000000-0000-0000-0000-000000000001': 0.5,
-            '00000000-0000-0000-0000-000000000002': 0.5
-          },
-          'totalCommonExpenses': 0,
-          'totalCommonExpensesPaidByUser': {
-            '00000000-0000-0000-0000-000000000001': 0,
-            '00000000-0000-0000-0000-000000000002': 0
-          },
-          'userShouldPay': {
-            '00000000-0000-0000-0000-000000000001': 0,
-            '00000000-0000-0000-0000-000000000002': 0
-          },
-          'targetUserShare': {
-            '00000000-0000-0000-0000-000000000001': 0,
-            '00000000-0000-0000-0000-000000000002': 0
-          },
-          'actualUserShare': {
-            '00000000-0000-0000-0000-000000000001': 0,
-            '00000000-0000-0000-0000-000000000002': 0
-          }
-        },
-        {
-          'householdId': '10000000-0000-0000-0000-000000000000',
-          'monthYear': '202405',
-          'userName': {
-            '00000000-0000-0000-0000-000000000001': 'User1',
-            '00000000-0000-0000-0000-000000000002': 'User2'
-          },
-          'incomeAfterTax': {
-            '00000000-0000-0000-0000-000000000001': 0,
-            '00000000-0000-0000-0000-000000000002': 0
-          },
-          'userSharesOfHouseholdIncome': {
-            '00000000-0000-0000-0000-000000000001': 0.5,
-            '00000000-0000-0000-0000-000000000002': 0.5
-          },
-          'totalCommonExpenses': 0,
-          'totalCommonExpensesPaidByUser': {
-            '00000000-0000-0000-0000-000000000001': 0,
-            '00000000-0000-0000-0000-000000000002': 0
-          },
-          'userShouldPay': {
-            '00000000-0000-0000-0000-000000000001': 0,
-            '00000000-0000-0000-0000-000000000002': 0
-          },
-          'targetUserShare': {
-            '00000000-0000-0000-0000-000000000001': 0,
-            '00000000-0000-0000-0000-000000000002': 0
-          },
-          'actualUserShare': {
-            '00000000-0000-0000-0000-000000000001': 0,
-            '00000000-0000-0000-0000-000000000002': 0
-          }
-        },
-        {
-          'householdId': '10000000-0000-0000-0000-000000000000',
-          'monthYear': '202406',
-          'userName': {
-            '00000000-0000-0000-0000-000000000001': 'User1',
-            '00000000-0000-0000-0000-000000000002': 'User2'
-          },
-          'incomeAfterTax': {
-            '00000000-0000-0000-0000-000000000001': 0,
-            '00000000-0000-0000-0000-000000000002': 0
-          },
-          'userSharesOfHouseholdIncome': {
-            '00000000-0000-0000-0000-000000000001': 0.5,
-            '00000000-0000-0000-0000-000000000002': 0.5
-          },
-          'totalCommonExpenses': 0,
-          'totalCommonExpensesPaidByUser': {
-            '00000000-0000-0000-0000-000000000001': 0,
-            '00000000-0000-0000-0000-000000000002': 0
-          },
-          'userShouldPay': {
-            '00000000-0000-0000-0000-000000000001': 0,
-            '00000000-0000-0000-0000-000000000002': 0
-          },
-          'targetUserShare': {
-            '00000000-0000-0000-0000-000000000001': 0,
-            '00000000-0000-0000-0000-000000000002': 0
-          },
-          'actualUserShare': {
-            '00000000-0000-0000-0000-000000000001': 0,
-            '00000000-0000-0000-0000-000000000002': 0
-          }
-        },
-        {
-          'householdId': '10000000-0000-0000-0000-000000000000',
-          'monthYear': '202407',
-          'userName': {
-            '00000000-0000-0000-0000-000000000001': 'User1',
-            '00000000-0000-0000-0000-000000000002': 'User2'
-          },
-          'incomeAfterTax': {
-            '00000000-0000-0000-0000-000000000001': 0,
-            '00000000-0000-0000-0000-000000000002': 0
-          },
-          'userSharesOfHouseholdIncome': {
-            '00000000-0000-0000-0000-000000000001': 0.5,
-            '00000000-0000-0000-0000-000000000002': 0.5
-          },
-          'totalCommonExpenses': 0,
-          'totalCommonExpensesPaidByUser': {
-            '00000000-0000-0000-0000-000000000001': 0,
-            '00000000-0000-0000-0000-000000000002': 0
-          },
-          'userShouldPay': {
-            '00000000-0000-0000-0000-000000000001': 0,
-            '00000000-0000-0000-0000-000000000002': 0
-          },
-          'targetUserShare': {
-            '00000000-0000-0000-0000-000000000001': 0,
-            '00000000-0000-0000-0000-000000000002': 0
-          },
-          'actualUserShare': {
-            '00000000-0000-0000-0000-000000000001': 0,
-            '00000000-0000-0000-0000-000000000002': 0
-          }
-        },
-        {
-          'householdId': '10000000-0000-0000-0000-000000000000',
-          'monthYear': '202408',
-          'userName': {
-            '00000000-0000-0000-0000-000000000001': 'User1',
-            '00000000-0000-0000-0000-000000000002': 'User2'
-          },
-          'incomeAfterTax': {
-            '00000000-0000-0000-0000-000000000001': 0,
-            '00000000-0000-0000-0000-000000000002': 0
-          },
-          'userSharesOfHouseholdIncome': {
-            '00000000-0000-0000-0000-000000000001': 0.5,
-            '00000000-0000-0000-0000-000000000002': 0.5
-          },
-          'totalCommonExpenses': 0,
-          'totalCommonExpensesPaidByUser': {
-            '00000000-0000-0000-0000-000000000001': 0,
-            '00000000-0000-0000-0000-000000000002': 0
-          },
-          'userShouldPay': {
-            '00000000-0000-0000-0000-000000000001': 0,
-            '00000000-0000-0000-0000-000000000002': 0
-          },
-          'targetUserShare': {
-            '00000000-0000-0000-0000-000000000001': 0,
-            '00000000-0000-0000-0000-000000000002': 0
-          },
-          'actualUserShare': {
-            '00000000-0000-0000-0000-000000000001': 0,
-            '00000000-0000-0000-0000-000000000002': 0
-          }
-        },
-        {
-          'householdId': '10000000-0000-0000-0000-000000000000',
-          'monthYear': '202409',
-          'userName': {
-            '00000000-0000-0000-0000-000000000001': 'User1',
-            '00000000-0000-0000-0000-000000000002': 'User2'
-          },
-          'incomeAfterTax': {
-            '00000000-0000-0000-0000-000000000001': 25163,
-            '00000000-0000-0000-0000-000000000002': 0
-          },
-          'userSharesOfHouseholdIncome': {
-            '00000000-0000-0000-0000-000000000001': 1,
-            '00000000-0000-0000-0000-000000000002': 0
-          },
-          'totalCommonExpenses': 18586.535,
-          'totalCommonExpensesPaidByUser': {
-            '00000000-0000-0000-0000-000000000001': 6547.325,
-            '00000000-0000-0000-0000-000000000002': 12039.21
-          },
-          'userShouldPay': {
-            '00000000-0000-0000-0000-000000000001': 5024.315,
-            '00000000-0000-0000-0000-000000000002': 7571.18
-          },
-          'targetUserShare': {
-            '00000000-0000-0000-0000-000000000001': 0.27,
-            '00000000-0000-0000-0000-000000000002': 0.407
-          },
-          'actualUserShare': {
-            '00000000-0000-0000-0000-000000000001': 0.352,
-            '00000000-0000-0000-0000-000000000002': 0.648
-          }
-        },
-        {
-          'householdId': '10000000-0000-0000-0000-000000000000',
-          'monthYear': '202410',
-          'userName': {
-            '00000000-0000-0000-0000-000000000001': 'User1',
-            '00000000-0000-0000-0000-000000000002': 'User2'
-          },
-          'incomeAfterTax': {
-            '00000000-0000-0000-0000-000000000001': 54235,
-            '00000000-0000-0000-0000-000000000002': 0
-          },
-          'userSharesOfHouseholdIncome': {
-            '00000000-0000-0000-0000-000000000001': 1,
-            '00000000-0000-0000-0000-000000000002': 0
-          },
-          'totalCommonExpenses': 106674.202,
-          'totalCommonExpensesPaidByUser': {
-            '00000000-0000-0000-0000-000000000001': 104696.851,
-            '00000000-0000-0000-0000-000000000002': 1977.351
-          },
-          'userShouldPay': {
-            '00000000-0000-0000-0000-000000000001': 91954.133,
-            '00000000-0000-0000-0000-000000000002': 14744.405
-          },
-          'targetUserShare': {
-            '00000000-0000-0000-0000-000000000001': 0.862,
-            '00000000-0000-0000-0000-000000000002': 0.138
-          },
-          'actualUserShare': {
-            '00000000-0000-0000-0000-000000000001': 0.981,
-            '00000000-0000-0000-0000-000000000002': 0.019
-          }
-        },
-        {
-          'householdId': '10000000-0000-0000-0000-000000000000',
-          'monthYear': '202411',
-          'userName': {
-            '00000000-0000-0000-0000-000000000001': 'User1',
-            '00000000-0000-0000-0000-000000000002': 'User2'
-          },
-          'incomeAfterTax': {
-            '00000000-0000-0000-0000-000000000001': 0,
-            '00000000-0000-0000-0000-000000000002': 0
-          },
-          'userSharesOfHouseholdIncome': {
-            '00000000-0000-0000-0000-000000000001': 0.5,
-            '00000000-0000-0000-0000-000000000002': 0.5
-          },
-          'totalCommonExpenses': 0,
-          'totalCommonExpensesPaidByUser': {
-            '00000000-0000-0000-0000-000000000001': 0,
-            '00000000-0000-0000-0000-000000000002': 0
-          },
-          'userShouldPay': {
-            '00000000-0000-0000-0000-000000000001': 0,
-            '00000000-0000-0000-0000-000000000002': 0
-          },
-          'targetUserShare': {
-            '00000000-0000-0000-0000-000000000001': 0,
-            '00000000-0000-0000-0000-000000000002': 0
-          },
-          'actualUserShare': {
-            '00000000-0000-0000-0000-000000000001': 0,
-            '00000000-0000-0000-0000-000000000002': 0
-          }
-        },
-        {
-          'householdId': '10000000-0000-0000-0000-000000000000',
-          'monthYear': '202412',
-          'userName': {
-            '00000000-0000-0000-0000-000000000001': 'User1',
-            '00000000-0000-0000-0000-000000000002': 'User2'
-          },
-          'incomeAfterTax': {
-            '00000000-0000-0000-0000-000000000001': 0,
-            '00000000-0000-0000-0000-000000000002': 0
-          },
-          'userSharesOfHouseholdIncome': {
-            '00000000-0000-0000-0000-000000000001': 0.5,
-            '00000000-0000-0000-0000-000000000002': 0.5
-          },
-          'totalCommonExpenses': 0,
-          'totalCommonExpensesPaidByUser': {
-            '00000000-0000-0000-0000-000000000001': 0,
-            '00000000-0000-0000-0000-000000000002': 0
-          },
-          'userShouldPay': {
-            '00000000-0000-0000-0000-000000000001': 0,
-            '00000000-0000-0000-0000-000000000002': 0
-          },
-          'targetUserShare': {
-            '00000000-0000-0000-0000-000000000001': 0,
-            '00000000-0000-0000-0000-000000000002': 0
-          },
-          'actualUserShare': {
-            '00000000-0000-0000-0000-000000000001': 0,
-            '00000000-0000-0000-0000-000000000002': 0
-          }
-        }
-    ];
-
-
-    return (
-        <ThemeProvider theme={theme}>
-            <Table size="small">
-                <TableHead>
-                    <TableRow>
-                        <TableCell>Month</TableCell>
-                        <TableCell>Paid by User1</TableCell>
-                        <TableCell>Paid by User2</TableCell>
-                        <TableCell>User1 should pay</TableCell>
-                        <TableCell>User2 should pay</TableCell>
-                        <TableCell>Income User1</TableCell>
-                        <TableCell>Income User2</TableCell>
-                    </TableRow>
-                </TableHead>
-                <TableBody>
-                    {testData.map((row) => {
-                        const userIds = Object.keys(row.totalCommonExpensesPaidByUser); // Get all user IDs
-                        const user1Id = userIds[0]; // Assuming first user ID corresponds to User 1
-                        const user2Id = userIds[1];
-                        return (
-                            <TableRow key={row.monthYear}>
-                                <TableCell>{row.monthYear}</TableCell>
-                                <TableCell>{row.totalCommonExpensesPaidByUser[user1Id]}</TableCell>
-                                <TableCell>{row.totalCommonExpensesPaidByUser[user2Id]}</TableCell>
-                                <TableCell>{row.userShouldPay[user1Id]}</TableCell>
-                                <TableCell>{row.userShouldPay[user2Id]}</TableCell>
-                                <TableCell>{row.incomeAfterTax[user1Id]}</TableCell>
-                                <TableCell>{row.incomeAfterTax[user2Id]}</TableCell>
-                            </TableRow>
-                        );
-                    })}
-                </TableBody>
-            </Table>
-        </ThemeProvider>
-    );
+  return (
+    <ThemeProvider theme={theme}>
+      <Table size="small">
+        <TableHead>
+          <TableRow>
+            <TableCell>Month</TableCell>
+            <TableCell>Paid by User1</TableCell>
+            <TableCell>Paid by User2</TableCell>
+            <TableCell>User1 should pay</TableCell>
+            <TableCell>User2 should pay</TableCell>
+            <TableCell>Income User1</TableCell>
+            <TableCell>Income User2</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {repartition.map((month) => {
+            const userIds = Object.keys(month.totalCommonExpensesPaidByUser); // Get all user IDs
+            const user1Id = userIds[0]; // Assuming first user ID corresponds to User 1
+            const user2Id = userIds[1];
+            return (
+              <TableRow key={month.monthYear}>
+                <TableCell>{month.monthYear}</TableCell>
+                <TableCell>{month.totalCommonExpensesPaidByUser[user1Id]}</TableCell>
+                <TableCell>{month.totalCommonExpensesPaidByUser[user2Id]}</TableCell>
+                <TableCell>{month.userShouldPay[user1Id]}</TableCell>
+                <TableCell>{month.userShouldPay[user2Id]}</TableCell>
+                <TableCell>{month.incomeAfterTax[user1Id]}</TableCell>
+                <TableCell>{month.incomeAfterTax[user2Id]}</TableCell>
+              </TableRow>
+            );
+          })}
+        </TableBody>
+      </Table>
+    </ThemeProvider>
+  );
 };
 
 export default RepartitionTable;

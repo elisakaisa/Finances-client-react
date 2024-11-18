@@ -8,5 +8,5 @@ export interface RepartitionResponse {
     totalCommonExpensesPaidByUser: Record<string, number>;
     userShouldPay: Record<string, number>;
     targetUserShare: Record<string, number>;
-    actualUserShare: Record<string, number>; 
+    actualUserShare: Record<string, number>;
 }
