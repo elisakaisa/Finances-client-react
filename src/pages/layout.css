@@ -5,3 +5,10 @@
 .padding-5 {
     padding: 5px;
 }
+
+.dropdown-container {
+    display: flex;
+    gap: 16px;
+    justify-content: flex-start;
+    margin-bottom: 16px;
+}

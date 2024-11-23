@@ -23,7 +23,7 @@ const Repartition = () => {
 
     return (
         <div className='padding-20'>
-            <FormControl fullWidth>
+            <FormControl>
                 <InputLabel id="select-year-label">Year</InputLabel>
                 <Select
                     labelId="select-year"
