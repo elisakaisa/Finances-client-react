@@ -14,6 +14,7 @@ const Repartition = () => {
 
     const handleChange = (event: SelectChangeEvent) => {
         setYear(Number(event.target.value));
+        //TODO: fetch new data here
     };
 
     const currentYear = new Date().getFullYear();
@@ -30,8 +31,7 @@ const Repartition = () => {
                     id="select-year"
                     value={year.toString()}
                     label="Year"
-                    onChange={handleChange}
-                >
+                    onChange={handleChange}>
                     {yearList.map((year) => (
                         <MenuItem key={year} value={year}>{year}</MenuItem>
                     ))}

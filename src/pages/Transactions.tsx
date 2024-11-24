@@ -10,6 +10,7 @@ import Select, { SelectChangeEvent } from '@mui/material/Select';
 
 const Transactions = () => {
     const [transactions, setTransactions] = useState(testTransactions);
+    const [transactionsToDisplay, setTransactionsToDisplay] = useState(testTransactions);
     const [year, setYear] = useState<number>(new Date().getFullYear());
     const [month, setMonth] = useState<number>(new Date().getMonth());
     const [financialMonth, setFinancialMonth] = useState<string>('');
@@ -25,6 +26,7 @@ const Transactions = () => {
         setYear(Number(event.target.value));
         const updatedFinancialMonth = `${event.target.value}${month.toString().padStart(2, '0')}`;
         setFinancialMonth(updatedFinancialMonth);
+        //TODO: fetch new data if year is changed
         filterTransactions(updatedFinancialMonth);
     };
     const handleMonthChange = (event: SelectChangeEvent) => {
@@ -37,7 +39,7 @@ const Transactions = () => {
     };
 
     const filterTransactions = (finMonth: string) => {
-        //TODO: filter here
+        setTransactionsToDisplay(transactions.filter((t) => t.financialMonth === finMonth));
     };
 
     return (
@@ -70,7 +72,7 @@ const Transactions = () => {
                     </Select>
                 </FormControl>
             </div>
-            <TransactionGrid transactions={transactions}/>
+            <TransactionGrid transactions={transactionsToDisplay}/>
         </div>
     );
 };
