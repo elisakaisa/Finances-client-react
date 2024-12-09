@@ -32,6 +32,7 @@ const RepartitionTable = ({repartition}: RepartitionTableProps) => {
             <TableCell>Paid by User2</TableCell>
             <TableCell>User1 should pay</TableCell>
             <TableCell>User2 should pay</TableCell>
+            <TableCell>Total common</TableCell>
             <TableCell>Income User1</TableCell>
             <TableCell>Income User2</TableCell>
           </TableRow>
@@ -48,6 +49,7 @@ const RepartitionTable = ({repartition}: RepartitionTableProps) => {
                 <TableCell>{month.totalCommonExpensesPaidByUser[user2Id]}</TableCell>
                 <TableCell>{month.userShouldPay[user1Id]}</TableCell>
                 <TableCell>{month.userShouldPay[user2Id]}</TableCell>
+                <TableCell>{month.totalCommonExpenses}</TableCell>
                 <TableCell>{month.incomeAfterTax[user1Id]}</TableCell>
                 <TableCell>{month.incomeAfterTax[user2Id]}</TableCell>
               </TableRow>
