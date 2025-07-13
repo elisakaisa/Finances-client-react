@@ -5,7 +5,7 @@ import TableCell from '@mui/material/TableCell';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { SummaryTableProps } from '../models/Props';
+import type { SummaryTableProps } from '../models/Props';
 
 const SummaryTable = ({ summary }: SummaryTableProps) => {
 

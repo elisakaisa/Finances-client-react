@@ -1,7 +1,5 @@
-import React from 'react';
+import './App.css'
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import './App.css';
-
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 import Transactions from './pages/Transactions';
@@ -11,15 +9,14 @@ import Repartition from './pages/Repartition';
 import Summary from './pages/Summary';
 
 function App() {
-
-	const darkTheme = createTheme({
+  const darkTheme = createTheme({
 		palette: {
 			mode: 'dark',
 		},
 	});
 
-	return (
-		<BrowserRouter>
+  return (
+    <BrowserRouter>
 			<ThemeProvider theme={darkTheme}>
 				<Header />
 				<Routes>
@@ -30,7 +27,7 @@ function App() {
 				</Routes>
 			</ThemeProvider>
 		</BrowserRouter>
-	);
-};
+  )
+}
 
 export default App;

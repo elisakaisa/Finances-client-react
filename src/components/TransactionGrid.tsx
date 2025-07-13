@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { DataGrid, GridRowsProp, GridColDef } from '@mui/x-data-grid';
+import { DataGrid } from '@mui/x-data-grid';
+import type { GridRowsProp, GridColDef } from '@mui/x-data-grid';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { IconButton, Tooltip } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
-import { TransactionGridProps } from '../models/Props';
+import type { TransactionGridProps } from '../models/Props';
 
 const TransactionGrid = ({transactions}: TransactionGridProps) => {
 
