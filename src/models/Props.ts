@@ -13,3 +13,18 @@ export interface RepartitionTableProps {
 export interface SummaryTableProps {
     summary: SummaryResponse[]
 }
+
+export interface CategoryPieChartProps {
+    data: {
+    id: number;
+    label: string;
+    value: number;
+  }[];
+}
+
+export interface YearlyBarChartProps {
+  series: {
+    label: string;
+    data: number[]; // Must be length 12
+  }[];
+}

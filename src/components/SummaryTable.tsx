@@ -6,6 +6,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import type { SummaryTableProps } from '../models/Props';
+import { MONTHS } from '../constants/constants';
 
 const SummaryTable = ({ summary }: SummaryTableProps) => {
 
@@ -24,7 +25,6 @@ const SummaryTable = ({ summary }: SummaryTableProps) => {
     const subcategories = Array.from(
         new Map(summary.map(response => [response.subcategoryName, true])).keys()
     );
-    const months = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'oct', 'nov', 'dec'];
 
     return (
         <ThemeProvider theme={theme}>
@@ -32,7 +32,7 @@ const SummaryTable = ({ summary }: SummaryTableProps) => {
                 <TableHead>
                     <TableRow>
                         <TableCell></TableCell>
-                        {months.map((month) => (
+                        {MONTHS.map((month) => (
                             <TableCell key={month}>{month}</TableCell>
                         ))}
                     </TableRow>
@@ -41,7 +41,7 @@ const SummaryTable = ({ summary }: SummaryTableProps) => {
                     {subcategories.map((subcategory) => (
                         <TableRow key={subcategory}>
                             <TableCell>{subcategory}</TableCell>
-                            {months.map((month) => (
+                            {MONTHS.map((month) => (
                                 <TableCell key={month + subcategory}>0</TableCell>
                             ))}
                         </TableRow>

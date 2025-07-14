@@ -1,12 +1,12 @@
 import React from 'react';
 import { BarChart } from '@mui/x-charts/BarChart';
+import { MONTHS } from '../constants/constants';
 
 const ExpenseTypeBarChart = () => {
     // TODO: data needs to be passed as props, and needed datastrcuture needs to be defined
-    var months = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV']
-    var incomeData = generateRandomFloats();
-    var expenseData = generateRandomFloats();
-    var savingsData = generateRandomFloats();
+    const incomeData = generateRandomFloats();
+    const expenseData = generateRandomFloats();
+    const savingsData = generateRandomFloats();
 
     function generateRandomFloats() {
         return Array.from({ length: 12 }, () =>
@@ -20,9 +20,9 @@ const ExpenseTypeBarChart = () => {
         series={[
             { data: incomeData, label: 'Income', stack: 'in' },
             { data: expenseData, label: 'Expenses', stack: 'out' },
-            { data: savingsData, label: 'Income', stack: 'out' },
+            { data: savingsData, label: 'Savings', stack: 'out' },
         ]}
-        xAxis={[{ data: months }]}
+        xAxis={[{ data: MONTHS }]}
         yAxis={[{ width: 50 }]}
         />
     );
