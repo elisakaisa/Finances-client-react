@@ -3,9 +3,27 @@ import YearlyBarChart from '../components/YearlyBarChart';
 import CategoryPieChart from '../components/CategoryPieChart';
 import TransactionTypeBarChart from '../components/TransactionTypeBarChart';
 import { generateRandomPieData, generateRandomYearlyBarChartData, getRandomTransactionTypeBarChartData } from '../services/chartService';
+import { useState } from 'react';
+import YearMonthDropdown from './pageComponents/YearMonthDropDown';
 
 
 const Charts = () => {
+    const [year, setYear] = useState<number>(new Date().getFullYear());
+    const [month, setMonth] = useState<number>(new Date().getMonth());
+    const [financialMonth, setFinancialMonth] = useState<string>('');
+
+    const handleYearChange = (newYear: number) => {
+        setYear(newYear);
+        const updatedFinancialMonth = `${newYear}${month.toString().padStart(2, '0')}`;
+        setFinancialMonth(updatedFinancialMonth);
+    };
+
+    const handleMonthChange = (newMonth: number) => {
+        const paddedMonth = newMonth.toString().padStart(2, '0');
+        setMonth(newMonth);
+        const updatedFinancialMonth = `${year.toString()}${paddedMonth}`;
+        setFinancialMonth(updatedFinancialMonth);
+    };
 
     const randomPieData = generateRandomPieData();
     const randomData = generateRandomYearlyBarChartData();
@@ -14,6 +32,12 @@ const Charts = () => {
 
     return (
         <div className='padding-20'>
+            <YearMonthDropdown
+                year={year}
+                month={month}
+                onYearChange={handleYearChange}
+                onMonthChange={handleMonthChange}
+                />
             <>Charts to have</>
             <ul>
                 <li>YearlyBar: total, common, individual, allows to choose year</li>
