@@ -28,3 +28,11 @@ export interface YearlyBarChartProps {
     data: number[]; // Must be length 12
   }[];
 }
+
+export interface TransactionTypeBarChartProps {
+  data: {
+    income: number[];
+    expenses: number[];
+    savings: number[];
+  }
+}
