@@ -30,9 +30,7 @@ export interface YearlyBarChartProps {
 }
 
 export interface TransactionTypeBarChartProps {
-  data: {
-    income: number[];
-    expenses: number[];
-    savings: number[];
-  }
+  income: number[];
+  expenses: number[];
+  savings: number[];
 }

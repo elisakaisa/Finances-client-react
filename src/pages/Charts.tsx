@@ -2,63 +2,34 @@ import './layout.css';
 import YearlyBarChart from '../components/YearlyBarChart';
 import CategoryPieChart from '../components/CategoryPieChart';
 import TransactionTypeBarChart from '../components/TransactionTypeBarChart';
-import type { CategoryPieChartProps, TransactionTypeBarChartProps } from '../models/Props';
-import type { YearlyBarChartProps } from '../models/Props';
-import { MONTHS } from '../constants/constants';
+import { generateRandomPieData, generateRandomYearlyBarChartData, getRandomTransactionTypeBarChartData } from '../services/chartService';
 
 
 const Charts = () => {
 
-    // test data fro pie chart
-    const labels = [ "Home", "Loans", "Groceries", "Food", "Pets", "Car", "Transport", "Shopping", "Leisure", "Vacation",];
-
-    function generateRandomPieData(): CategoryPieChartProps["data"] {
-    return labels.map((label, index) => ({
-        id: index,
-        label,
-        value: parseFloat((Math.random() * 100).toFixed(2)),
-    }));
-    }
     const randomPieData = generateRandomPieData();
-
-
-    function generateRandomFloats() {
-        return Array.from({ length: MONTHS.length }, () =>
-            parseFloat((Math.random() * 100).toFixed(2))
-            );
-        }
-
-    // test data for yearly bar chart
-    function generateRandomYearlyBarChartData(): YearlyBarChartProps {
-
-        return {
-            series: [
-            { label: "Home", data: generateRandomFloats() },
-            { label: "Loans", data: generateRandomFloats() },
-            { label: "Groceries", data: generateRandomFloats() },
-            ],
-        };
-    }
     const randomData = generateRandomYearlyBarChartData();
-
-    // TODO: data needs to be passed as props, and needed datastrcuture needs to be defined
-    function generateRandomExpenseTypeBarChartData() : TransactionTypeBarChartProps {
-        return {
-            data: {
-                income: generateRandomFloats(),
-                expenses: generateRandomFloats(),
-                savings: generateRandomFloats(),
-            }
-        }
-    }
-    const randomTransactionTypeData = generateRandomExpenseTypeBarChartData();
+    const randomTransactionTypeData = getRandomTransactionTypeBarChartData();
 
 
     return (
         <div className='padding-20'>
+            <>Charts to have</>
+            <ul>
+                <li>YearlyBar: total, common, individual, allows to choose year</li>
+                <li>SubCategoryPie: individual, common, total + allows to choose month or year </li>
+                <li>SubCategoryPie: individual, common, total + allows to choose month or year </li>
+                <li>TransactionType: one per user</li>
+                <li>Some graph to map individual vs common expenses</li>
+                <li>repartition graph - should maybe be in repartition page</li>
+            </ul>
             <YearlyBarChart {...randomData}></YearlyBarChart>
             <CategoryPieChart data={randomPieData}></CategoryPieChart>
-            <TransactionTypeBarChart data={randomTransactionTypeData.data}></TransactionTypeBarChart>
+            <TransactionTypeBarChart 
+                income={randomTransactionTypeData.income}
+                expenses={randomTransactionTypeData.expenses}
+                savings={randomTransactionTypeData.savings}>
+            </TransactionTypeBarChart>
         </div>
     );
 };
